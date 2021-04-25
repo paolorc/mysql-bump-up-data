@@ -1,0 +1,10 @@
+node_modules
+dist
+
+# Test files
+*.csv
+
+# dotenv environment variables file
+.env
+.env.test
+.env*.local

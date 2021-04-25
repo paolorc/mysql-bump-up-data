@@ -1,0 +1,22 @@
+{
+  "name": "import_csv",
+  "version": "1.0.0",
+  "description": "importing rows to db",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index",
+    "start:dev": "nodemon src/index"
+  },
+  "author": "PaoloRC",
+  "license": "ISC",
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1"
+  },
+  "repository": "git@github.com:paolorc/mysql-bump-up-data.git"
+}
