@@ -39,18 +39,23 @@ const initProcess = async (query) => {
 
 					return;
 				}
+				try {
+					newItem.idcategoria = category.idcategoria;
+					newItem.codigo = parsed.SKU;
+					newItem.nombre = parsed.DESCRIPTION.replace(/"/g, '&quot;');
+					newItem.stock = Number(parsed.STOCK);
+					newItem.stock2 = parsed.STOCK;
+					newItem.tiempo_entrega = 'Inmediato';
+					newItem.precio_venta = Number(parsed.PRICE);
+					newItem.division = DEFAULT_DIVION;
 
-				newItem.idcategoria = category.idcategoria;
-				newItem.codigo = parsed.SKU;
-				newItem.nombre = parsed.DESCRIPTION;
-				newItem.stock = Number(parsed.STOCK);
-				newItem.stock2 = parsed.STOCK;
-				newItem.tiempo_entrega = 'Inmediato';
-				newItem.precio_venta = Number(parsed.PRICE);
-				newItem.division = DEFAULT_DIVION;
-
-				loadedRows.push(newItem);
-				await query(`INSERT INTO articulo SET ?`, newItem);
+					loadedRows.push(newItem);
+					await query(`INSERT INTO articulo SET ?`, newItem);
+				} catch (error) {
+					throw new Error(
+						`Error on article sku, code: ${newItem.codigo}, error: ${error.message}`,
+					);
+				}
 			})
 			.on('error', (error) => {
 				throw new Error(error);
