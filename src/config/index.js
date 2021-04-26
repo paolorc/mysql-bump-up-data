@@ -11,4 +11,11 @@ const connection = mysql.createConnection({
 	database: mysqlConfig.DB_NAME,
 });
 
-exports.asyncQuery = promisify(connection.query).bind(connection);
+const query = (sql, args) => {
+	const promiseQuery = promisify(connection.query).bind(connection);
+
+	return promiseQuery(sql, args);
+};
+
+exports.connection = connection;
+exports.promiseQuery = query;
